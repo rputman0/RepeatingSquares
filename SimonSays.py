@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 (width, height) = (300,300)
 
-#set the width and height, and caption
+#set the width, height, and caption
 screen = pygame.display.set_mode((width,height))
 pygame.display.set_caption("Simon Says")
 
@@ -22,7 +22,7 @@ lightYellow = [227,250,96]
 #create Four Squares (red,green,blue,yellow)
 pygame.draw.rect(screen, red, [0,0,150,150],0)
 pygame.draw.rect(screen, green, [0,150,150,150],0)
-pygame.draw.rect(screen, blue, [149,0,150,150],0) #TODO: blue is slightly off
+pygame.draw.rect(screen, blue, [149,0,150,150],0)
 pygame.draw.rect(screen, yellow, [150,150,150,150],0)
 
 pygame.display.update()
@@ -60,23 +60,25 @@ while running:
             pygame.display.update()
 
         #press enter to start the game
+        colorSequence = ['lightRed','lightGreen','lightBlue','lightYellow']
+        rectangleValues = [ [0,0,150,150],[0,150,150,150],[149,0,150,150],[150,150,150,150]]
         if(event.type == pygame.KEYDOWN):
            if(event.key == pygame.K_RETURN):
-                print("Hello World")
+               print("Hello World")
+               #6. Create random sequence of red,green,blue,yellow (1 = red, ...,4 = yellow)
+                    #6.A Store random sequence into a list
+                    #6.B Use for loop to display list on screen
+                    #6.C For each item, turn square into lighter color
+                    #6.D Wait 1 Second, turn square back into darker color
+                    #6.E Go to next item in list
+               
+        #7. Check if user enters the same list (clicks on squares in the same sequence)
 
-#6. Create random sequence of red,green,blue,yellow (1 = red, ...,4 = yellow)
-    #6.A Store random sequence into an arraylist
-    #6.B Use for loop to display arraylist on screen
-        #6.C For each item, turn square into lighter color
-        #6.D Wait 1 Second, turn square back into darker color
-        #6.E Go to next item in arraylist
-#7. Check if user enters the same arraylist (clicks on squares in the same sequence)
-#8. If user has entered the same arraylist
-    #8.A - Print "Correct: Score++" and Play sound
-    #8.B - Increment the arraylist
-         #8.C - Keep the last pattern the same, add one new random pattern
-#9. Else
-    #9.A - Print "Wrong: Game Over\nFinal Score: Score"
-    #9.B - Prompt user to try again
-    #9.C - Reset the Arraylist
-#10. Upload to github
+        #8. If user has entered the same list
+            #8.A - Print "Correct: Score++" and Play sound
+            #8.B - Increment the list
+             #8.C - Keep the last pattern the same, add one new random pattern
+        #9. Else
+            #9.A - Print "Wrong: Game Over\nFinal Score: Score"
+            #9.B - Prompt user to try again
+            #9.C - Reset the list
