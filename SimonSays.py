@@ -27,7 +27,18 @@ pygame.draw.rect(screen, yellow, [150,150,150,150],0)
 
 pygame.display.update()
 
-#CLOSING THE WINDOW, Do events here (Place at the end)
+colorSequence = list()
+def getSequence(color,colorSequence):
+    if(color == lightBlue):
+        colorSequence.append("BLUE")
+    elif(color == lightRed):
+        colorSequence.append("RED")
+    elif(color == lightGreen):
+        colorSequence.append("GREEN")
+    elif(color == lightYellow):
+        colorSequence.append("YELLOW")
+
+#CLOSING THE WINDOW, Place events here
 running = True
 while running:
     for event in pygame.event.get():
@@ -38,33 +49,31 @@ while running:
         mousePos = pygame.mouse.get_pos()
         if(event.type == pygame.MOUSEBUTTONDOWN and (mousePos[0] > 0 and mousePos[0] < 150 and mousePos[1] < 150)):
             pygame.draw.rect(screen, lightRed, [0,0,150,150],0)
-            #print(mousePos)
+            getSequence(lightRed,colorSequence)
             pygame.display.update()
         elif(event.type == pygame.MOUSEBUTTONDOWN and (mousePos[0] > 150 and mousePos[0] < 300 and mousePos[1] < 150)):
-            pygame.draw.rect(screen, lightBlue, [149,0,150,150],0) #TODO: blue is slightly off
-            #print(mousePos)
+            pygame.draw.rect(screen, lightBlue, [149,0,150,150],0)
+            getSequence(lightBlue,colorSequence)
             pygame.display.update()
         elif(event.type == pygame.MOUSEBUTTONDOWN and (mousePos[0] > 0 and mousePos[0] < 150 and mousePos[1] > 150 and mousePos[1] < 300)):
             pygame.draw.rect(screen, lightGreen, [0,150,150,150],0)
-            #print(mousePos)
+            getSequence(lightGreen,colorSequence)
             pygame.display.update()
         elif(event.type == pygame.MOUSEBUTTONDOWN and (mousePos[0] > 150 and mousePos[0] < 300 and mousePos[1] > 150 and mousePos[1] < 300)):
             pygame.draw.rect(screen, lightYellow, [150,150,150,150],0)
-            #print(mousePos)
+            getSequence(lightYellow,colorSequence)
             pygame.display.update()
         else:
             pygame.draw.rect(screen, red, [0,0,150,150],0)
             pygame.draw.rect(screen, green, [0,150,150,150],0)
-            pygame.draw.rect(screen, blue, [149,0,150,150],0) #TODO: blue is slightly off
+            pygame.draw.rect(screen, blue, [149,0,150,150],0)
             pygame.draw.rect(screen, yellow, [150,150,150,150],0)
             pygame.display.update()
 
         #press enter to start the game
-        colorSequence = ['lightRed','lightGreen','lightBlue','lightYellow']
-        rectangleValues = [ [0,0,150,150],[0,150,150,150],[149,0,150,150],[150,150,150,150]]
         if(event.type == pygame.KEYDOWN):
            if(event.key == pygame.K_RETURN):
-               print("Hello World")
+               #print(colorSequence)
                #6. Create random sequence of red,green,blue,yellow (1 = red, ...,4 = yellow)
                     #6.A Store random sequence into a list
                     #6.B Use for loop to display list on screen
