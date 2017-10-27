@@ -21,15 +21,21 @@ lightGreen = [34,139,34]
 lightYellow = [227,250,96]
 
 colorSequence = list()
+squareSequence = list()
+
 def getSequence(color,colorSequence):
     if(color == lightBlue):
-        colorSequence.append("BLUE")
+        colorSequence.append(lightBlue)
+        squareSequence.append(TOPRIGHT)
     elif(color == lightRed):
-        colorSequence.append("RED")
+        colorSequence.append(lightRed)
+        squareSequence.append(TOPLEFT)
     elif(color == lightGreen):
-        colorSequence.append("GREEN")
+        colorSequence.append(lightGreen)
+        squareSequence.append(BOTLEFT)
     elif(color == lightYellow):
-        colorSequence.append("YELLOW")
+        colorSequence.append(lightYellow)
+        squareSequence.append(BOTRIGHT)
 
 #squares
 TOPLEFT = [0,0,150,150]
@@ -94,6 +100,17 @@ while running:
                    drawDefault()
                    pygame.time.wait(1000)
                    iterator += 1
+           elif(event.key == pygame.K_RETURN):
+                for i in range(0,len(colorSequence)):
+                   #store sequence
+                   drawSquare(colorSequence[i],squareSequence[i])
+                   pygame.time.wait(1000)
+                   drawDefault()
+                colorSequence = list()
+                squareSequence = list()
+                   
         #let user click on the square
         else:
            userClick()
+
+        drawDefault()
