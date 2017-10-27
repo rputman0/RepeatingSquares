@@ -7,7 +7,7 @@ pygame.init()
 
 #set the width, height, and caption
 screen = pygame.display.set_mode((width,height))
-pygame.display.set_caption("Simon Says")
+pygame.display.set_caption("Repeating Squares")
 
 #get the light and dark colors (red,green,blue,yellow)
 blue = [0,0,255]
@@ -37,16 +37,19 @@ TOPRIGHT = [149,0,150,150]
 BOTLEFT = [0,150,150,150]
 BOTRIGHT = [150,150,150,150]
 
-def drawSquare(color,position):
+def drawRect(color,position):
     pygame.draw.rect(screen,color,position,0)
+
+def drawSquare(color,position):
+    drawRect(color,position)
     pygame.display.update()
     getSequence(color,colorSequence)
 
 def drawDefault():
-    pygame.draw.rect(screen, red, TOPLEFT,0)
-    pygame.draw.rect(screen, blue, TOPRIGHT,0)
-    pygame.draw.rect(screen, green, BOTLEFT,0)
-    pygame.draw.rect(screen, yellow, BOTRIGHT,0)
+    drawRect(red,TOPLEFT)
+    drawRect(blue,TOPRIGHT)
+    drawRect(green,BOTLEFT)
+    drawRect(yellow,BOTRIGHT)
 
 def getMousePos(x1,y1,x2,y2):
     mousePos = pygame.mouse.get_pos()
@@ -64,7 +67,6 @@ def userClick():
         drawSquare(lightGreen,BOTLEFT)
     elif(isMouseButtonDown() and getMousePos(150,300,150,300) ):
         drawSquare(lightYellow,BOTRIGHT)
-        getSequence(lightYellow,colorSequence)
     else:
         drawDefault()
         pygame.display.update()
@@ -72,49 +74,26 @@ def userClick():
 drawDefault()
 pygame.display.update()
 
-#CLOSING THE WINDOW (this is the main loop)
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-        #let the user click on the buttons
-        userClick()
-
-        #press enter to start the game
+        #get the same square and color
         randomColor = [lightBlue,lightGreen,lightYellow,lightRed]
         squareLocation =[TOPRIGHT,BOTLEFT,BOTRIGHT,TOPLEFT]
+
+        iterator = 0
         if(event.type == pygame.KEYDOWN):
-           if(event.key == pygame.K_t): #use for test mode
-               print(colorSequence) 
-           #7. Check if user enters the same list (clicks on squares in the same sequence)    
-           elif(event.key == pygame.K_SPACE):
-               userClick()
-               player = colorSequence
-               colorSequence = list() #set back to default value
-               print(player)
-           #print random pattern, with each correct answer you increment one
-           elif(event.key == pygame.K_RETURN):
-               end = 1
-               i = 0
-               score = 0
-               
-               for i in range(i,end):
+           #when the user presses enter, start random pattern
+           if(event.key == pygame.K_SPACE):
+               while(iterator < 20):
                    square = randint(0,3)
                    drawSquare(randomColor[square],squareLocation[square])
+                   drawDefault()
                    pygame.time.wait(1000)
-                   computer = colorSequence
-
-                   if(player == computer):
-                       print("Hello")
-                       end += 1
-                       
-        #8. If user has entered the same list
-            #8.A - Print "Correct: Score++"
-            #8.B - Increment the list
-            #8.C - Keep the last pattern the same, add one new random pattern
-        #9. Else
-            #9.A - Print "Wrong: Game Over\nFinal Score: Score"
-            #9.B - Prompt user to try again
-            #9.C - Reset the list
+                   iterator += 1
+        #let user click on the square
+        else:
+           userClick()
