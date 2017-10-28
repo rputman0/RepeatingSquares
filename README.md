@@ -18,3 +18,4 @@ How to Run and Compile: <br />
       4. Open IDLE  <br />
       5. Compile and Run  <br />
 
+![alt text](https://github.com/rputman0/SimonSays/edit/master/simonSays.png "Simon Says")
