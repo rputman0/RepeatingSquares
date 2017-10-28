@@ -1,4 +1,4 @@
-# RepeatingSquares
+# Simon Says
 
 This is a program to practice pygame graphics. <br />
 It allows you to click on a square,draw random patterns, repeat patterns generated from the user, and play Simon Says.
