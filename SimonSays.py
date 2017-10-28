@@ -128,6 +128,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+        #get the same square and color
+        randomColor = [lightBlue,lightGreen,lightYellow,lightRed]
+        squareLocation =[TOPRIGHT,BOTLEFT,BOTRIGHT,TOPLEFT]
+        
         iterator = -1
         score = 0 #let score be the endpoint
         
@@ -135,9 +139,6 @@ while running:
             
             #start random pattern of squares, by pressing 1
             if(event.key == pygame.K_1):
-               #get the same square and color
-               randomColor = [lightBlue,lightGreen,lightYellow,lightRed]
-               squareLocation =[TOPRIGHT,BOTLEFT,BOTRIGHT,TOPLEFT]
  
                while(iterator < 20):
                    square = randint(0,3)
